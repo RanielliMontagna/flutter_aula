@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class SobrePage extends StatelessWidget {
   const SobrePage({super.key});
@@ -14,19 +15,42 @@ class SobrePage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
+              //imagem redonda
+              const CircleAvatar(
+                radius: 100,
+                backgroundImage: AssetImage('assets/fotoPerfil.jpg'),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
               const Text(
-                'Sobre',
+                'Sobre mim',
                 style: TextStyle(fontSize: 30),
               ),
               const SizedBox(
                 height: 20,
               ),
-              //chamar componente nome
+              const SizedBox(
+                height: 20,
+              ),
               Info(title: 'Nome:', text: 'Ranielli Montagna'),
               Info(title: 'Matrícula:', text: '182746'),
               Info(title: 'Email:', text: 'ranielimontagna@hotmail.com'),
               Info(title: 'Curso:', text: 'ADS'),
               Info(title: 'Semestre:', text: '6º'),
+
+              //button para site
+              const SizedBox(
+                height: 20,
+              ),
+
+              ElevatedButton(
+                onPressed: () {
+                  var uri = Uri.parse('https://ranimontagna.com');
+                  launchUrl(uri);
+                },
+                child: const Text('Para mais informações clique aqui'),
+              ),
             ],
           ),
         ));
