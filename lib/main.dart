@@ -1,4 +1,5 @@
 import 'package:app_aula/containers/contador.dart';
+import 'package:app_aula/containers/diasvividos.dart';
 import 'package:app_aula/containers/home.dart';
 import 'package:app_aula/containers/sobre.dart';
 
@@ -27,6 +28,9 @@ class MyApp extends StatelessWidget {
           '/sobre': (context) => const SobrePage(),
           '/contador': (context) => const Contador(
                 title: "Contador",
+              ),
+          '/diasvividos': (context) => const DiasVividosPage(
+                title: "Dias vividos",
               ),
         });
   }
