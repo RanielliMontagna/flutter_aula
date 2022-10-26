@@ -59,8 +59,15 @@ class _MyHomePageState extends State<HomePage> {
               onTap: () {
                 Navigator.pushNamed(context, '/diasvividos');
               },
-              leading: const Icon(Icons.format_align_justify),
+              leading: const Icon(Icons.calendar_today),
             ),
+            ListTile(
+              title: const Text('IMC'),
+              onTap: () {
+                Navigator.pushNamed(context, '/imc');
+              },
+              leading: const Icon(Icons.straighten),
+            )
           ],
         ),
       ),

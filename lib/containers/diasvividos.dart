@@ -1,3 +1,4 @@
+import 'package:app_aula/util/dialogs.dart';
 import 'package:flutter/material.dart';
 
 class DiasVividosPage extends StatefulWidget {
@@ -17,10 +18,15 @@ class _DiasVividosPageState extends State<DiasVividosPage> {
   void _calcularIdade() {
     setState(() {
       _diasVividos = _idade * 365;
+      entries.add('$_nome tem $_idade anos e viveu ~ $_diasVividos dias.');
     });
+    Dialogs.showAlertDialog(context, "Calculou dias para $_nome");
   }
 
   final _formKey = GlobalKey<FormState>();
+
+  final List<String> entries = <String>[];
+  final List<int> colorCodes = <int>[600, 100];
 
   @override
   Widget build(BuildContext context) {
@@ -71,13 +77,14 @@ class _DiasVividosPageState extends State<DiasVividosPage> {
                 ),
               ),
               //mostrar resultado
-              Padding(
-                padding: const EdgeInsets.all(32),
-                child: Text(
-                  '$_nome, você já viveu $_diasVividos dias!',
-                  style: const TextStyle(fontSize: 20),
+              if (_diasVividos > 0)
+                Padding(
+                  padding: const EdgeInsets.all(32),
+                  child: Text(
+                    '$_nome tem $_idade anos e viveu ~ $_diasVividos dias.',
+                    style: const TextStyle(fontSize: 20),
+                  ),
                 ),
-              ),
               Padding(
                 padding: const EdgeInsets.all(32),
                 child: TextFormField(
@@ -90,16 +97,31 @@ class _DiasVividosPageState extends State<DiasVividosPage> {
                   initialValue: _diasVividos.toString(),
                 ),
               ),
+              SizedBox(
+                height: 200,
+                width: 300,
+                child: ListView.builder(
+                  padding: const EdgeInsets.all(8),
+                  itemCount: entries.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return Container(
+                      height: 50,
+                      color: Colors.amber[colorCodes[index % 2 > 0 ? 0 : 1]],
+                      child: Center(child: Text(entries[index])),
+                    );
+                  },
+                ),
+              ),
             ],
           )),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           if (_formKey.currentState!.validate()) {
             FocusScope.of(context).unfocus();
-            _calcularIdade();
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text('Calculado com sucesso!')),
-            );
+            Dialogs.showConfirmDialog(
+                context,
+                'Você tem certeza que deseja calcular a idade?',
+                _calcularIdade);
           }
         },
         tooltip: 'Calcular',
