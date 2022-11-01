@@ -67,7 +67,14 @@ class _MyHomePageState extends State<HomePage> {
                 Navigator.pushNamed(context, '/imc');
               },
               leading: const Icon(Icons.straighten),
-            )
+            ),
+            ListTile(
+              title: const Text('Lista'),
+              onTap: () {
+                Navigator.pushNamed(context, '/exemplo_listview');
+              },
+              leading: const Icon(Icons.list),
+            ),
           ],
         ),
       ),

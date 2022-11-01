@@ -1,5 +1,6 @@
 import 'package:app_aula/containers/contador.dart';
 import 'package:app_aula/containers/diasvividos.dart';
+import 'package:app_aula/containers/exemplo_listview.dart';
 import 'package:app_aula/containers/home.dart';
 import 'package:app_aula/containers/imc.dart';
 import 'package:app_aula/containers/sobre.dart';
@@ -35,7 +36,10 @@ class MyApp extends StatelessWidget {
               ),
           '/imc': ((context) => const ImcPage(
                 title: "IMC",
-              ))
+              )),
+          '/exemplo_listview': (context) => const ExemploListPage(
+                title: "Exemplo ListView",
+              ),
         });
   }
 }
