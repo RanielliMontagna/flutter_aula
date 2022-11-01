@@ -1,3 +1,5 @@
+import 'package:app_aula/model/imc.dart';
+import 'package:app_aula/util/dialogs.dart';
 import 'package:flutter/material.dart';
 
 class ImcPage extends StatefulWidget {
@@ -10,14 +12,14 @@ class ImcPage extends StatefulWidget {
 }
 
 class _ImcPageState extends State<ImcPage> {
-  String _nome = '';
-  double _peso = 0;
-  double _altura = 0;
-  double _imc = 0;
+  Imc obj = Imc();
+  final List<Imc> entries = <Imc>[];
+  final List<int> colorCodes = <int>[600, 100];
 
   void _calcularImc() {
+    Dialogs.showAlertDialog(context, obj.getResultado());
     setState(() {
-      _imc = _peso / (_altura * _altura);
+      entries.add(Imc.iniAll(obj.nome, obj.altura, obj.peso));
     });
   }
 
@@ -47,7 +49,7 @@ class _ImcPageState extends State<ImcPage> {
                     if (value == null || value.isEmpty) {
                       return 'Por favor, insira o seu nome!';
                     }
-                    _nome = value;
+                    obj.nome = value;
                     return null;
                   },
                 )),
@@ -65,7 +67,7 @@ class _ImcPageState extends State<ImcPage> {
                   if (value == null || value.isEmpty) {
                     return 'Por favor, insira o seu peso!';
                   }
-                  _peso = double.parse(value);
+                  obj.peso = double.parse(value);
                   return null;
                 },
               ),
@@ -84,12 +86,27 @@ class _ImcPageState extends State<ImcPage> {
                   if (value == null || value.isEmpty) {
                     return 'Por favor, insira a sua altura!';
                   }
-                  _altura = double.parse(value);
+                  obj.altura = double.parse(value);
                   return null;
                 },
               ),
             ),
-            if (_imc != 0) Text('$_nome tem IMC de $_imc'),
+            if (obj.getImc() != 0) Text(obj.getResultado()),
+            SizedBox(
+              height: 200,
+              width: 300,
+              child: ListView.builder(
+                padding: const EdgeInsets.all(8),
+                itemCount: entries.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return Container(
+                    height: 50,
+                    color: Colors.amber[colorCodes[index % 2 > 0 ? 0 : 1]],
+                    child: Center(child: Text(entries[index].nome)),
+                  );
+                },
+              ),
+            ),
           ],
         ),
       ),
