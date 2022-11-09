@@ -1,4 +1,5 @@
 import 'package:app_aula/containers/contador.dart';
+import 'package:app_aula/containers/contato/contato.dart';
 import 'package:app_aula/containers/diasvividos.dart';
 import 'package:app_aula/containers/exemplo_listview.dart';
 import 'package:app_aula/containers/home.dart';
@@ -39,6 +40,9 @@ class MyApp extends StatelessWidget {
               )),
           '/exemplo_listview': (context) => const ExemploListPage(
                 title: "Exemplo ListView",
+              ),
+          '/contato': (context) => const ContatoPage(
+                title: "Contato",
               ),
         });
   }

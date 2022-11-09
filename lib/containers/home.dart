@@ -75,6 +75,13 @@ class _MyHomePageState extends State<HomePage> {
               },
               leading: const Icon(Icons.list),
             ),
+            ListTile(
+              title: const Text('Contato'),
+              onTap: () {
+                Navigator.pushNamed(context, '/contato');
+              },
+              leading: const Icon(Icons.contact_mail),
+            ),
           ],
         ),
       ),
