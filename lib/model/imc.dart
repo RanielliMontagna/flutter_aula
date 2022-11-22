@@ -8,9 +8,9 @@ class Imc {
   Imc();
   Imc.iniAll(this._nome, this._peso, this._altura);
   Imc.iniNome(String nome) {
-    this._nome = nome;
-    this._peso = 0;
-    this._altura = 0;
+    _nome = nome;
+    _peso = 0;
+    _altura = 0;
   }
 
   // Métodos

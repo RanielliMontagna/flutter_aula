@@ -1,5 +1,6 @@
 import 'package:app_aula/containers/contador.dart';
 import 'package:app_aula/containers/contato/contato_list.dart';
+import 'package:app_aula/containers/contato_api/contato_list.dart';
 import 'package:app_aula/containers/diasvividos.dart';
 import 'package:app_aula/containers/exemplo_listview.dart';
 import 'package:app_aula/containers/home.dart';
@@ -43,6 +44,9 @@ class MyApp extends StatelessWidget {
               ),
           '/contato': (context) => const ContatosListPage(
                 title: "Contato",
+              ),
+          '/contato_api': (context) => const ContatosApiPage(
+                title: "Contato API",
               ),
         });
   }
